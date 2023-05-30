@@ -13,12 +13,14 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 
 import cibertec.DAWII_CL2_ChristopherParattoriCruz.model.Rol;
 import cibertec.DAWII_CL2_ChristopherParattoriCruz.model.Usuario;
 
+@Service
 public class UsuarioDetalleService implements UserDetailsService {
 
 	// aut

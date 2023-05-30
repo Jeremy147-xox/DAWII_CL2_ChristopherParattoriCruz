@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+</head>
+<body>
+<script th:src="@{/scripts/jsweb/empleado/frmMantEmpleado.js}"
+        type="text/javascript"></script>
+<nav th:insert="layout::menu"></nav>
+<div class="card ">
+    <div class="card-header text-bg-dark mb-3">
+        Lista de Empleados
+    </div>
+    <div class="card-body">
+        <button id="btnagregar"
+                type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</button>
+        <hr />
+        <div id="mensaje"></div>
+        <table id="tblempleado" class="table">
+            <thead>
+            <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Fecha Contrat.</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="empleado :${listaempleados}">
+                <td th:text="${empleado.idempleado}"></td>
+                <td th:text="${empleado.nombre}"></td>
+                <td th:text="${empleado.apellido}"></td>
+                <td th:text="${empleado.fechacontrat}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Modal Registrar / Actualizar Empleado -->
+<div class="modal fade" id="modalNuevo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Sala</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="txtnomempleado" class="form-label">Nombre del Empleado</label>
+                    <input maxlength="15" type="text" class="form-control" id="txtnomempleado">
+                </div>
+                <div class="mb-3">
+                    <label for="txtapeempleado" class="form-label">Apellido del Empleado</label>
+                    <input maxlength="15" type="text" class="form-control" id="txtapeempleado">
+                </div>
+                <input type="hidden" id="hddidempleado">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
+                <button type="button" id="btnguardar" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
