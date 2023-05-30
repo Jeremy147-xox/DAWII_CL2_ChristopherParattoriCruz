@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import cibertec.DAWII_CL2_ChristopherParattoriCruz.services.UsuarioDetalleService;
 
@@ -45,17 +46,10 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/auth/principal")
                 .usernameParameter("nomusuario")
                 .passwordParameter("password")
-            .and()
-            .logout()
-            .logoutUrl("/logout")
-            .logoutSuccessUrl("/auth/login?logout") // Redirige a la página de inicio de sesión después del logout exitoso
-            .invalidateHttpSession(true)
-            .deleteCookies("JSESSIONID")
-            .clearAuthentication(true) // Limpia la autenticación después del logout
-            .permitAll()
+                .and().logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/auth/login")
             .and()
             .authenticationProvider(authenticationProvider());
-
         return http.build();
     }
 

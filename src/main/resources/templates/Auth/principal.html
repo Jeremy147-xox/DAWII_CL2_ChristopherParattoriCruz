@@ -19,6 +19,7 @@
         .welcome-message {
             font-size: 24px;
             margin-top: 20px;
+            
         }
     </style>
 </head>
@@ -39,7 +40,7 @@
 </nav>
 
 <div class="container text-center">
-    <h1 class="welcome-message">¡Bienvenido, Usuario!</h1>
+    <h1 class="welcome-message">¡Bienvenido <span th:text="${usuario.nombres + ' ' + usuario.apellidos}"></span></h1>
     <!-- Contenido del dashboard -->
 </div>
 
